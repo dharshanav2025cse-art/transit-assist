@@ -2,6 +2,8 @@ package org.example.transitassist.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "assistance_requests")
@@ -11,10 +13,13 @@ public class AssistanceRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String pickupPoint;
 
+    @NotNull
     private LocalDateTime tripTime;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private AssistanceType assistanceType;
 

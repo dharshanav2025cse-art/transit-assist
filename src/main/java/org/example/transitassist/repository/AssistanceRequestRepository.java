@@ -7,7 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface AssistanceRequestRepository extends JpaRepository<AssistanceRequest, Long> {
+public interface AssistanceRequestRepository
+        extends JpaRepository<AssistanceRequest, Long> {
 
-    List<AssistanceRequest> findByHelperAndTripTime(Helper helper, LocalDateTime tripTime);
+    List<AssistanceRequest> findByHelperAndTripTime(
+            Helper helper,
+            LocalDateTime tripTime);
+
+    List<AssistanceRequest> findByHelperAndTripTimeBetween(
+            Helper helper,
+            LocalDateTime start,
+            LocalDateTime end);
 }

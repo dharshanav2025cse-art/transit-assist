@@ -1,6 +1,7 @@
 package org.example.transitassist.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "helpers")
@@ -10,8 +11,10 @@ public class Helper {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String phone;
 
     private boolean available;

@@ -3,6 +3,7 @@ package org.example.transitassist.controller;
 import org.example.transitassist.entity.Helper;
 import org.example.transitassist.service.HelperService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/helpers")
@@ -15,7 +16,7 @@ public class HelperController {
     }
 
     @PostMapping
-    public Helper createHelper(@RequestBody Helper helper) {
+    public Helper createHelper(@Valid @RequestBody Helper helper){
         return helperService.createHelper(helper);
     }
 }

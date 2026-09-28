@@ -3,6 +3,7 @@ package org.example.transitassist.controller;
 import org.example.transitassist.entity.User;
 import org.example.transitassist.service.UserService;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/users")
@@ -15,7 +16,7 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody User user){
         return userService.createUser(user);
     }
 }
