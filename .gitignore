@@ -33,3 +33,5 @@ build/
 .vscode/
 # Sensitive configuration
 src/main/resources/application.properties
+# Node / React
+node_modules/

@@ -3,6 +3,7 @@ package org.example.transitassist.service;
 import org.example.transitassist.entity.Helper;
 import org.example.transitassist.repository.HelperRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class HelperService {
@@ -14,5 +15,8 @@ public class HelperService {
     }
     public Helper createHelper(Helper helper) {
         return helperRepository.save(helper);
+    }
+    public List<Helper> getAllHelpers() {
+        return helperRepository.findAll();
     }
 }

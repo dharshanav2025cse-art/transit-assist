@@ -56,8 +56,8 @@ public class AssistanceRequestService {
             throw new IllegalArgumentException("Completed request cannot be reassigned");
         }
 
-        if (!helper.isAvailable()) {
-            throw new IllegalArgumentException("Helper is not available");
+        if (request.getStatus() == RequestStatus.CANCELLED) {
+            throw new IllegalArgumentException("Cancelled request cannot be reassigned");
         }
         if (!assistanceRequestRepository
                 .findByHelperAndTripTime(helper, request.getTripTime())
@@ -94,6 +94,10 @@ public class AssistanceRequestService {
             throw new IllegalArgumentException("Completed request cannot be cancelled");
         }
 
+        if (request.getStatus() == RequestStatus.CANCELLED) {
+            throw new IllegalArgumentException("Request is already cancelled");
+        }
+
         request.setStatus(RequestStatus.CANCELLED);
 
         return assistanceRequestRepository.save(request);
@@ -108,5 +112,13 @@ public class AssistanceRequestService {
 
         return assistanceRequestRepository
                 .findByHelperAndTripTimeBetween(helper, start, end);
+    }
+    public AssistanceRequest getRequest(Long requestId) {
+
+        return assistanceRequestRepository.findById(requestId)
+                .orElseThrow(() -> new IllegalArgumentException("Request not found"));
+    }
+    public List<AssistanceRequest> getAllRequests() {
+        return assistanceRequestRepository.findAll();
     }
 }

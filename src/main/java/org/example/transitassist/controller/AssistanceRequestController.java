@@ -41,4 +41,12 @@ public class AssistanceRequestController {
     public List<AssistanceRequest> getHelperWorkload(@PathVariable Long helperId) {
         return assistanceRequestService.getHelperWorkload(helperId);
     }
+    @GetMapping("/{requestId}")
+    public AssistanceRequest getRequest(@PathVariable Long requestId) {
+        return assistanceRequestService.getRequest(requestId);
+    }
+    @GetMapping
+    public List<AssistanceRequest> getAllRequests() {
+        return assistanceRequestService.getAllRequests();
+    }
 }
